@@ -6,14 +6,20 @@ export default class Clock extends React.Component {
     this.props.handleClose(this.props.clock.id)
   }
 
+  /**********************
+    Check these for formating dates and times:
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+  **********************/
   render() {
-    /**********************
-      Check these for formating dates and times:
-      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
-      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
-    **********************/
+    // show a light card in AM, dark card in PM hours
+    let cardClass = Number(this.props.time.toLocaleString('en-US', {
+      hour: 'numeric',
+      hour12: false,
+      timeZone: this.props.timezone.name
+    })) % 24 < 12 ? 'card bg-light mb-3' : 'card text-white bg-dark mb-3';
     return (
-      <div className="card border-primary mb-3" style={{maxWidth: 18+'rem'}}>
+      <div className={cardClass} style={{maxWidth: 18+'rem'}}>
         <div className="card-header">
           {this.props.timezone.name}
           <button type="button" className="close" aria-label="Close" onClick={this.handleClose}>
@@ -25,9 +31,16 @@ export default class Clock extends React.Component {
             {this.props.time.toLocaleString('en-US', {
               hour: 'numeric', minute: 'numeric', second: 'numeric', 
               timeZone: this.props.timezone.name,
-              timeZoneName: 'short'
             })}
           </h5>
+          <p className="card-text text-muted">
+          {this.props.time.toLocaleString('en-US', {
+              weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+              timeZone: this.props.timezone.name,
+              timeZoneName: 'short'
+            })}
+            
+          </p>
         </div>
       </div>
     );
