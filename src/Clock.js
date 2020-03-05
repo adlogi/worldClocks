@@ -3,7 +3,7 @@ import React from 'react';
 export default class Clock extends React.Component {
 
   handleClose = () => {
-    this.props.handleClose(this.props.clock.id)
+    this.props.handleClose(this.props.timezone.id);
   }
 
   /**********************
