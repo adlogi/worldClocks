@@ -28,13 +28,13 @@ export default class AddClock extends React.Component {
 
   render() {
     return (
-      <div className="input-group">
-        <select className="custom-select" id="timezoneSelect" aria-label="Example select with button addon" defaultValue="0">
-          <option value={Intl.DateTimeFormat().resolvedOptions().timeZone}>Choose a different timezone...</option>
+      <div className="input-group my-5">
+        <select className="custom-select" id="timezoneSelect" aria-label="Timezone select with button addon" defaultValue="0">
+          <option value={Intl.DateTimeFormat().resolvedOptions().timeZone}>Choose a timezone...</option>
           {this.timezoneList}
         </select>
         <div className="input-group-append">
-          <button onClick={this.handleNew} className="btn btn-outline-secondary" type="button">New Clock</button>
+          <button onClick={this.handleNew} className="btn btn-primary" type="button">New Clock</button>
         </div>
       </div>
     );
