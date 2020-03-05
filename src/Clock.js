@@ -17,9 +17,9 @@ export default class Clock extends React.Component {
       hour: 'numeric',
       hour12: false,
       timeZone: this.props.timezone.name
-    })) % 24 < 12 ? 'card bg-light mb-3' : 'card text-white bg-dark mb-3';
+    })) % 24 < 12 ? 'card bg-light' : 'card text-white bg-dark';
     return (
-      <div className={cardClass} style={{maxWidth: 18+'rem'}}>
+      <div className={cardClass} >
         <div className="card-header">
           {this.props.timezone.name}
           <button type="button" className="close" aria-label="Close" onClick={this.handleClose}>
