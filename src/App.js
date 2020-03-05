@@ -21,11 +21,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <AddClock handleNew={this.handleNew} />
-        {this.state.timezones.map(timezone => (
-          <Clock time={this.state.time} timezone={timezone} handleClose={this.handleClose} key={timezone.id} />
-        ))}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          {this.state.timezones.map(timezone => (
+            <div class="col mb-4">
+              <Clock time={this.state.time} timezone={timezone} handleClose={this.handleClose} key={timezone.id} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
